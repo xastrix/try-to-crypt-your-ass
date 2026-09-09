@@ -11,6 +11,8 @@ ServerName localhost:443
 4. Open phpMyAdmin (http://localhost/phpmyadmin) and create a table named 'loader'
 5. Compile the project using Visual Studio 2017 and run the client
 6. Enter any username and password to initialize the database, then log in again using 'admin' for both fields
+## Showcase
+![](media/showcase.gif)
 ## Server requirements
 - Your DLL must not weigh more than 10 MB
 - You will need an SSL certificate
