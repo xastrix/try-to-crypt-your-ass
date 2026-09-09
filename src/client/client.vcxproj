@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>15.0</VCProjectVersion>
+    <ProjectGuid>{9CFAA9FF-15A1-441B-ABAE-E111D1DA856C}</ProjectGuid>
+    <RootNamespace>Client</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
+    <ProjectName>Client</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(SolutionDir)deps\xorstr\include;$(SolutionDir)deps\httplib\include;$(SolutionDir)deps\minhook\include;$(SolutionDir)deps\mbedtls\include;$(SolutionDir)deps\VMProtectSDK\include;$(SolutionDir)deps\jsonreader\include;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(SolutionDir)deps\xorstr\include;$(SolutionDir)deps\httplib\include;$(SolutionDir)deps\minhook\include;$(SolutionDir)deps\mbedtls\include;$(SolutionDir)deps\VMProtectSDK\include;$(SolutionDir)deps\jsonreader\include;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir>
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(SolutionDir)deps\xorstr\include;$(SolutionDir)deps\httplib\include;$(SolutionDir)deps\minhook\include;$(SolutionDir)deps\mbedtls\include;$(SolutionDir)deps\VMProtectSDK\include;$(SolutionDir)deps\jsonreader\include;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(DXSDK_DIR)Include;$(SolutionDir)deps\xorstr\include;$(SolutionDir)deps\httplib\include;$(SolutionDir)deps\minhook\include;$(SolutionDir)deps\mbedtls\include;$(SolutionDir)deps\VMProtectSDK\include;$(SolutionDir)deps\jsonreader\include;$(IncludePath)</IncludePath>
+    <TargetName>$(ProjectName)</TargetName>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MinSpace</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <StringPooling>true</StringPooling>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <StackReserveSize>
+      </StackReserveSize>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>Bcrypt.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MinSpace</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>NOMINMAX;NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <StringPooling>true</StringPooling>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>None</DebugInformationFormat>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <ExceptionHandling>Sync</ExceptionHandling>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <StackReserveSize>
+      </StackReserveSize>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>Bcrypt.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MinSpace</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <StringPooling>true</StringPooling>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <StackReserveSize>
+      </StackReserveSize>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>Bcrypt.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>TurnOffAllWarnings</WarningLevel>
+      <Optimization>MinSpace</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <ConformanceMode>false</ConformanceMode>
+      <PreprocessorDefinitions>NOMINMAX;_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/std:c++latest %(AdditionalOptions)</AdditionalOptions>
+      <FavorSizeOrSpeed>Size</FavorSizeOrSpeed>
+      <WholeProgramOptimization>false</WholeProgramOptimization>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <StringPooling>true</StringPooling>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeTypeInfo>false</RuntimeTypeInfo>
+      <ExceptionHandling>Sync</ExceptionHandling>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+    </ClCompile>
+    <Link>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <EntryPointSymbol>
+      </EntryPointSymbol>
+      <UACExecutionLevel>RequireAdministrator</UACExecutionLevel>
+      <StackReserveSize>
+      </StackReserveSize>
+      <IgnoreAllDefaultLibraries>
+      </IgnoreAllDefaultLibraries>
+      <AdditionalDependencies>Bcrypt.lib;d3d9.lib;d3dx9.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <ImageHasSafeExceptionHandlers>false</ImageHasSafeExceptionHandlers>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\deps\mbedtls\src\aes.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\aesce.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\aesni.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\aria.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\asn1parse.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\asn1write.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\base64.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\bignum.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\bignum_core.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\bignum_mod.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\bignum_mod_raw.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\camellia.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ccm.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\chacha20.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\chachapoly.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\cipher.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\cipher_wrap.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\cmac.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\constant_time.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ctr_drbg.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\debug.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\des.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\dhm.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ecdh.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ecdsa.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ecjpake.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ecp.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ecp_curves.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ecp_curves_new.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\entropy.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\entropy_poll.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\error.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\gcm.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\hkdf.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\hmac_drbg.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\lmots.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\lms.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\md.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\md5.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\memory_buffer_alloc.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\mps_reader.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\mps_trace.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\net_sockets.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\nist_kw.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\oid.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\padlock.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pem.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pk.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pkcs12.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pkcs5.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pkcs7.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pkparse.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pkwrite.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\pk_wrap.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\platform.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\platform_util.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\poly1305.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_aead.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_cipher.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_client.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_driver_wrappers_no_static.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_ecp.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_ffdh.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_hash.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_mac.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_pake.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_rsa.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_se.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_slot_management.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_crypto_storage.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_its_file.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\psa_util.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ripemd160.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\rsa.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\rsa_alt_helpers.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\sha1.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\sha256.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\sha3.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\sha512.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_cache.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_ciphersuites.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_client.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_cookie.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_debug_helpers_generated.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_msg.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_ticket.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls12_client.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls12_server.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls13_client.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls13_generic.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls13_keys.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\ssl_tls13_server.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\threading.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\timing.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\version.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\version_features.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509write.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509write_crt.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509write_csr.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509_create.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509_crl.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509_crt.c" />
+    <ClCompile Include="..\..\deps\mbedtls\src\x509_csr.c" />
+    <ClCompile Include="..\..\deps\minhook\src\buffer.c" />
+    <ClCompile Include="..\..\deps\minhook\src\hde\hde32.c" />
+    <ClCompile Include="..\..\deps\minhook\src\hde\hde64.c" />
+    <ClCompile Include="..\..\deps\minhook\src\hook.c" />
+    <ClCompile Include="..\..\deps\minhook\src\trampoline.c" />
+    <ClCompile Include="button.cpp" />
+    <ClCompile Include="cfg.cpp" />
+    <ClCompile Include="font.cpp" />
+    <ClCompile Include="gameselector.cpp" />
+    <ClCompile Include="groupbox.cpp" />
+    <ClCompile Include="net.cpp" />
+    <ClCompile Include="injector.cpp" />
+    <ClCompile Include="interface.cpp" />
+    <ClCompile Include="listbox.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="renderer.cpp" />
+    <ClCompile Include="security.cpp" />
+    <ClCompile Include="textinput.cpp" />
+    <ClCompile Include="ui.cpp" />
+    <ClCompile Include="util.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\deps\httplib\include\httplib.h" />
+    <ClInclude Include="..\..\deps\jsonreader\include\jsonreader.hpp" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\aes.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\aria.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\asn1.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\asn1write.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\base64.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\bignum.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\build_info.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\camellia.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ccm.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\chacha20.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\chachapoly.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\check_config.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\cipher.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\cmac.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\compat-2.x.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_adjust_legacy_crypto.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_adjust_legacy_from_psa.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_adjust_psa_from_legacy.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_adjust_psa_superset_legacy.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_adjust_ssl.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_adjust_x509.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\config_psa.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\constant_time.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ctr_drbg.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\debug.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\des.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\dhm.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ecdh.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ecdsa.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ecjpake.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ecp.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\entropy.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\error.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\gcm.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\hkdf.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\hmac_drbg.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\lms.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\mbedtls_config.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\md.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\md5.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\memory_buffer_alloc.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\net_sockets.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\nist_kw.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\oid.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\pem.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\pk.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\pkcs12.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\pkcs5.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\pkcs7.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\platform.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\platform_time.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\platform_util.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\poly1305.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\private_access.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\psa_util.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ripemd160.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\rsa.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\sha1.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\sha256.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\sha3.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\sha512.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ssl.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ssl_cache.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ssl_ciphersuites.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ssl_cookie.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\ssl_ticket.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\threading.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\timing.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\version.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\x509.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\x509_crl.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\x509_crt.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\mbedtls\x509_csr.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\build_info.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_adjust_auto_enabled.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_adjust_config_key_pair_types.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_adjust_config_synonyms.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_builtin_composites.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_builtin_key_derivation.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_builtin_primitives.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_compat.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_config.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_driver_common.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_driver_contexts_composites.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_driver_contexts_key_derivation.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_driver_contexts_primitives.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_extra.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_legacy.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_platform.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_se_driver.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_sizes.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_struct.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_types.h" />
+    <ClInclude Include="..\..\deps\mbedtls\include\psa\crypto_values.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\aesce.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\aesni.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\alignment.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\base64_internal.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\bignum_core.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\bignum_mod.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\bignum_mod_raw.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\bignum_mod_raw_invasive.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\bn_mul.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\check_crypto_config.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\cipher_wrap.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\common.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\constant_time_impl.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\constant_time_internal.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ecp_internal_alt.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ecp_invasive.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\entropy_poll.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\lmots.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\md_psa.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\md_wrap.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\mps_common.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\mps_error.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\mps_reader.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\mps_trace.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\padlock.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\pkwrite.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\pk_internal.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\pk_wrap.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_aead.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_cipher.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_core.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_core_common.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_driver_wrappers.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_driver_wrappers_no_static.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_ecp.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_ffdh.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_hash.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_invasive.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_its.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_mac.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_pake.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_random_impl.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_rsa.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_se.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_slot_management.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_crypto_storage.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\psa_util_internal.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\rsa_alt_helpers.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ssl_client.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ssl_debug_helpers.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ssl_misc.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ssl_tls13_invasive.h" />
+    <ClInclude Include="..\..\deps\mbedtls\src\ssl_tls13_keys.h" />
+    <ClInclude Include="..\..\deps\minhook\include\MinHook.h" />
+    <ClInclude Include="..\..\deps\minhook\src\buffer.h" />
+    <ClInclude Include="..\..\deps\minhook\src\hde\hde32.h" />
+    <ClInclude Include="..\..\deps\minhook\src\hde\hde64.h" />
+    <ClInclude Include="..\..\deps\minhook\src\hde\pstdint.h" />
+    <ClInclude Include="..\..\deps\minhook\src\hde\table32.h" />
+    <ClInclude Include="..\..\deps\minhook\src\hde\table64.h" />
+    <ClInclude Include="..\..\deps\minhook\src\trampoline.h" />
+    <ClInclude Include="..\..\deps\VMProtectSDK\include\VMProtectSDK.h" />
+    <ClInclude Include="..\..\deps\xorstr\include\xorstr.h" />
+    <ClInclude Include="cfg.h" />
+    <ClInclude Include="globals.h" />
+    <ClInclude Include="net.h" />
+    <ClInclude Include="injector.h" />
+    <ClInclude Include="interface.h" />
+    <ClInclude Include="renderer.h" />
+    <ClInclude Include="security.h" />
+    <ClInclude Include="sprites.hpp" />
+    <ClInclude Include="ui.h" />
+    <ClInclude Include="util.h" />
+    <ClInclude Include="vec2.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\..\deps\VMProtectSDK\lib\x86\VMProtectSDK32.lib" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
