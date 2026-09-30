@@ -9,84 +9,150 @@
 
 namespace jsonreader
 {
-	enum class Type { Null, Object, Array, String, Number };
+	enum class json_type { null, object, arr, string, num };
 
-	struct Value {
-		Type type = Type::Null;
-		std::string string_val;
-		std::map<std::string, Value> object_val;
-		std::vector<Value> array_val;
-		double number_val = 0.0;
+	struct json_value {
+		const json_value& operator[](const std::string& key) const {
+			auto it = m_object.find(key);
 
-		const Value& operator[](const std::string& key) const {
-			auto it = object_val.find(key);
-			if (it == object_val.end()) {
-				static const Value null_value;
+			if (it == m_object.end()) {
+				static const json_value null_value;
 				return null_value;
 			}
+
 			return it->second;
 		}
 
-		const Value& operator[](size_t index) const {
-			if (index >= array_val.size()) {
-				static const Value null_value;
+		const json_value& operator[](size_t index) const {
+			if (index >= m_array.size()) {
+				static const json_value null_value;
 				return null_value;
 			}
-			return array_val[index];
+
+			return m_array[index];
 		}
 
-		const std::map<std::string, Value>& get_object() const {
-			return object_val;
-		}
+		json_type get_type() const { return m_type; }
+		void set_type(json_type type) { m_type = type; }
+
+		const std::string& get_string() const { return m_string; }
+		void set_string(const std::string& str) { m_string = str; }
+
+		const std::map<std::string, json_value>& get_object() const { return m_object; }
+		void set_object(const std::map<std::string, json_value>& obj) { m_object = obj; }
+
+		const std::vector<json_value>& get_array() const { return m_array; }
+		void set_array(const std::vector<json_value>& arr) { m_array = arr; }
+
+		double get_num() const { return m_num; }
+		void set_num(double num) { m_num = num; }
+
+	private:
+		json_type                         m_type = json_type::null;
+		std::string                       m_string;
+		std::map<std::string, json_value> m_object;
+		std::vector<json_value>           m_array;
+		double                            m_num;
+
+		friend class json_reader;
 	};
 
-	class Reader {
+	class json_reader {
 	public:
-		static Value parse(const std::string& src) {
+		static json_value parse(const std::string& src) {
 			size_t offset = 0;
 			skip_whitespace(src, offset);
+
 			return parse_value(src, offset);
 		}
 
 	private:
-		static void skip_whitespace(const std::string& src, size_t& offset) {
-			while (offset < src.size() && std::isspace(static_cast<unsigned char>(src[offset]))) offset++;
-		}
-
-		static Value parse_value(const std::string& src, size_t& offset) {
-			if (offset >= src.size()) return {};
-
-			char ch = src[offset];
-			if (ch == '{') return parse_object(src, offset);
-			if (ch == '[') return parse_array(src, offset);
-			if (ch == '"') return parse_string(src, offset);
-
-			if (std::isdigit(static_cast<unsigned char>(ch)) || ch == '-') {
-				return parse_number(src, offset);
-			}
-
-			Value val;
-			val.type = Type::Null;
-			return val;
-		}
-
-		static Value parse_string(const std::string& src, size_t& offset) {
-			Value val;
-			val.type = Type::String;
+		static json_value parse_object(const std::string& src, size_t& offset) {
+			json_value v;
+			v.m_type = json_type::object;
+			
 			offset++;
 
-			while (offset < src.size() && src[offset] != '"') {
-				val.string_val += src[offset];
+			while (offset < src.size()) {
+				skip_whitespace(src, offset);
+				if (offset < src.size() && src[offset] == '}') {
+					offset++;
+					return v;
+				}
+
+				if (offset >= src.size() || src[offset] != '"') {
+					json_value err_v;
+					err_v.m_type = json_type::null;
+					return err_v;
+				}
+
+				json_value key_v = parse_string(src, offset);
+
+				skip_whitespace(src, offset);
+				if (offset >= src.size() || src[offset] != ':') {
+					json_value err_v;
+					err_v.m_type = json_type::null;
+					return err_v;
+				}
 				offset++;
+
+				skip_whitespace(src, offset);
+				v.m_object[key_v.m_string] = parse_value(src, offset);
+
+				skip_whitespace(src, offset);
+				if (offset < src.size() && src[offset] == ',') {
+					offset++;
+				}
+				else if (offset < src.size() && src[offset] == '}') {
+					offset++;
+					return v;
+				}
+				else {
+					json_value err_v;
+					err_v.m_type = json_type::null;
+					return err_v;
+				}
 			}
 
-			if (offset < src.size()) offset++;
-			return val;
+			return v;
 		}
 
-		static Value parse_number(const std::string& src, size_t& offset) {
-			Value val;
-			val.type = Type::Number;
+		static json_value parse_array(const std::string& src, size_t& offset) {
+			json_value v;
+			v.m_type = json_type::arr;
+
+			offset++;
+
+			while (offset < src.size()) {
+				skip_whitespace(src, offset);
+				if (offset < src.size() && src[offset] == ']') {
+					offset++;
+					return v;
+				}
+
+				v.m_array.push_back(parse_value(src, offset));
+
+				skip_whitespace(src, offset);
+				if (offset < src.size() && src[offset] == ',') {
+					offset++;
+				}
+				else if (offset < src.size() && src[offset] == ']') {
+					offset++;
+					return v;
+				}
+				else {
+					json_value err_v;
+					err_v.m_type = json_type::null;
+					return err_v;
+				}
+			}
+
+			return v;
+		}
+
+		static json_value parse_number(const std::string& src, size_t& offset) {
+			json_value v;
+			v.m_type = json_type::num;
 
 			std::string num_str;
 			if (src[offset] == '-') {
@@ -101,97 +167,52 @@ namespace jsonreader
 
 			if (!num_str.empty()) {
 				try {
-					val.number_val = std::stod(num_str);
+					v.m_num = std::stod(num_str);
 				}
 				catch (...) {
-					val.type = Type::Null;
+					v.m_type = json_type::null;
 				}
 			}
 			else {
-				val.type = Type::Null;
+				v.m_type = json_type::null;
 			}
 
-			return val;
+			return v;
 		}
 
-		static Value parse_object(const std::string& src, size_t& offset) {
-			Value val;
-			val.type = Type::Object;
+		static json_value parse_string(const std::string& src, size_t& offset) {
+			json_value v;
+			v.m_type = json_type::string;
+
 			offset++;
 
-			while (offset < src.size()) {
-				skip_whitespace(src, offset);
-				if (offset < src.size() && src[offset] == '}') {
-					offset++;
-					return val;
-				}
-
-				if (offset >= src.size() || src[offset] != '"') {
-					Value error_val;
-					error_val.type = Type::Null;
-					return error_val;
-				}
-				Value key_val = parse_string(src, offset);
-
-				skip_whitespace(src, offset);
-				if (offset >= src.size() || src[offset] != ':') {
-					Value error_val;
-					error_val.type = Type::Null;
-					return error_val;
-				}
+			while (offset < src.size() && src[offset] != '"') {
+				v.m_string += src[offset];
 				offset++;
-
-				skip_whitespace(src, offset);
-				val.object_val[key_val.string_val] = parse_value(src, offset);
-
-				skip_whitespace(src, offset);
-				if (offset < src.size() && src[offset] == ',') {
-					offset++;
-				}
-				else if (offset < src.size() && src[offset] == '}') {
-					offset++;
-					return val;
-				}
-				else {
-					Value error_val;
-					error_val.type = Type::Null;
-					return error_val;
-				}
 			}
 
-			return val;
+			if (offset < src.size()) offset++;
+
+			return v;
 		}
 
-		static Value parse_array(const std::string& src, size_t& offset) {
-			Value val;
-			val.type = Type::Array;
-			offset++;
+		static json_value parse_value(const std::string& src, size_t& offset) {
+			if (offset >= src.size()) return {};
 
-			while (offset < src.size()) {
-				skip_whitespace(src, offset);
-				if (offset < src.size() && src[offset] == ']') {
-					offset++;
-					return val;
-				}
+			char ch = src[offset];
+			if (ch == '{') return parse_object(src, offset);
+			if (ch == '[') return parse_array(src, offset);
+			if (ch == '"') return parse_string(src, offset);
 
-				val.array_val.push_back(parse_value(src, offset));
-
-				skip_whitespace(src, offset);
-				if (offset < src.size() && src[offset] == ',') {
-					offset++;
-				}
-				else if (offset < src.size() && src[offset] == ']') {
-					offset++;
-					return val;
-				}
-				else {
-					Value error_val;
-					error_val.type = Type::Null;
-					return error_val;
-				}
+			if (std::isdigit(static_cast<unsigned char>(ch)) || ch == '-') {
+				return parse_number(src, offset);
 			}
 
-			return val;
+			return {};
+		}
+
+		static void skip_whitespace(const std::string& src, size_t& offset) {
+			while (offset < src.size() && std::isspace(static_cast<unsigned char>(src[offset]))) offset++;
 		}
 	};
 }

@@ -47,7 +47,21 @@ namespace g
 		inline int index = {};
 		inline std::vector<std::string> list = {};
 
-		inline void add(const std::string& msg) {
+		inline void add(const char* format, ...) {
+			va_list args;
+			va_start(args, format);
+
+			int size = vsnprintf(nullptr, 0, format, args);
+			va_end(args);
+
+			if (size <= 0) return;
+
+			std::string msg(size, '\0');
+
+			va_start(args, format);
+			vsnprintf(&msg[0], size + 1, format, args);
+			va_end(args);
+
 			auto it = std::find(list.begin(), list.end(), msg);
 
 			if (it == list.end()) {

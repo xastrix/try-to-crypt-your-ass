@@ -380,7 +380,7 @@ void* util::get_proc_address(void* mod_base, const char* func_name)
 	auto* exports = reinterpret_cast<PIMAGE_EXPORT_DIRECTORY>(byte_module_base + export_dir.VirtualAddress);
 
 	auto* name_array = reinterpret_cast<DWORD*>(byte_module_base + exports->AddressOfNames);
-	auto* func_frray = reinterpret_cast<DWORD*>(byte_module_base + exports->AddressOfFunctions);
+	auto* func_array = reinterpret_cast<DWORD*>(byte_module_base + exports->AddressOfFunctions);
 	auto* ordinal_array = reinterpret_cast<WORD*>(byte_module_base + exports->AddressOfNameOrdinals);
 
 	for (DWORD i = 0; i < exports->NumberOfNames; i++)
@@ -395,7 +395,7 @@ void* util::get_proc_address(void* mod_base, const char* func_name)
 			WORD ordinal = ordinal_array[i];
 			if (ordinal >= exports->NumberOfFunctions) return nullptr;
 
-			DWORD funcRVA = func_frray[ordinal];
+			DWORD funcRVA = func_array[ordinal];
 			if (funcRVA >= export_dir.VirtualAddress && funcRVA < (export_dir.VirtualAddress + export_dir.Size)) return nullptr;
 
 			return reinterpret_cast<void*>(byte_module_base + funcRVA);
@@ -469,7 +469,9 @@ void* util::get_module_handle_w(const wchar_t* mod_name)
 				wchar_t c1 = (name1[i] >= L'A' && name1[i] <= L'Z') ? (name1[i] + 32) : name1[i];
 				wchar_t c2 = (name2[i] >= L'A' && name2[i] <= L'Z') ? (name2[i] + 32) : name2[i];
 				
-				if (c1 != c2) break; i++;
+				if (c1 != c2) break;
+
+				i++;
 			}
 
 			if (name1[i] == L'\0' && name2[i] == L'\0') return entry->DllBase;

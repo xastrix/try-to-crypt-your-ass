@@ -1,7 +1,7 @@
 #pragma once
 
-#include "util.h"
-
+#include <windows.h>
+#include <string>
 #include <vector>
 
 using T_LoadLibraryA = HMODULE(WINAPI*)(LPCSTR);

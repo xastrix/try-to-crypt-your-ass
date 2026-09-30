@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.36324.19
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Client", "src\client\client.vcxproj", "{9CFAA9FF-15A1-441B-ABAE-E111D1DA856C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "try-to-crypt-your-ass", "src\client\try-to-crypt-your-ass.vcxproj", "{9CFAA9FF-15A1-441B-ABAE-E111D1DA856C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

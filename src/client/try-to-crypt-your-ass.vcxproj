@@ -21,9 +21,9 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{9CFAA9FF-15A1-441B-ABAE-E111D1DA856C}</ProjectGuid>
-    <RootNamespace>Client</RootNamespace>
+    <RootNamespace>try-to-crypt-your-ass</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.19041.0</WindowsTargetPlatformVersion>
-    <ProjectName>Client</ProjectName>
+    <ProjectName>try-to-crypt-your-ass</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
@@ -76,8 +76,8 @@
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(DXSDK_DIR)Include;$(SolutionDir)deps\xorstr\include;$(SolutionDir)deps\httplib\include;$(SolutionDir)deps\minhook\include;$(SolutionDir)deps\mbedtls\include;$(SolutionDir)deps\VMProtectSDK\include;$(SolutionDir)deps\jsonreader\include;$(IncludePath)</IncludePath>
-    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <TargetName>tcya_client</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
@@ -88,8 +88,8 @@
     <OutDir>$(SolutionDir)bin\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)obj\$(ProjectName)\$(Configuration)\</IntDir>
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
-    <IncludePath>$(DXSDK_DIR)Include;$(SolutionDir)deps\xorstr\include;$(SolutionDir)deps\httplib\include;$(SolutionDir)deps\minhook\include;$(SolutionDir)deps\mbedtls\include;$(SolutionDir)deps\VMProtectSDK\include;$(SolutionDir)deps\jsonreader\include;$(IncludePath)</IncludePath>
-    <TargetName>$(ProjectName)</TargetName>
+    <IncludePath>$(DXSDK_DIR)Include;$(IncludePath)</IncludePath>
+    <TargetName>tcya_client</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LibraryPath>$(DXSDK_DIR)Lib\x86;$(SolutionDir)deps\VMProtectSDK\lib\x86;$(LibraryPath)</LibraryPath>
@@ -110,7 +110,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\deps\xorstr\include;..\..\deps\httplib\include;..\..\deps\minhook\include;..\..\deps\mbedtls\include;..\..\deps\VMProtectSDK\include;..\..\deps\jsonreader\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>None</DebugInformationFormat>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -176,7 +176,7 @@
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <StringPooling>true</StringPooling>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\..\deps\xorstr\include;..\..\deps\httplib\include;..\..\deps\minhook\include;..\..\deps\mbedtls\include;..\..\deps\VMProtectSDK\include;..\..\deps\jsonreader\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <RuntimeTypeInfo>false</RuntimeTypeInfo>
       <ExceptionHandling>Sync</ExceptionHandling>

@@ -117,26 +117,26 @@ void c_network::auth(const std::string& username, const std::string& password)
 
 		switch (Res.status) {
 		case 200: {
-			jsonreader::Value root = jsonreader::Reader::parse(Res.resp);
-			int code = root[__("code")].number_val;
+			jsonreader::json_value root = jsonreader::json_reader::parse(Res.resp);
+			int code = root[__("code")].get_num();
 
 			switch (code) {
 			case 0x2: {
-				root = jsonreader::Reader::parse(Res.resp);
-				g::fields[FT_TOKEN] = root[__("token")].string_val;
+				root = jsonreader::json_reader::parse(Res.resp);
+				g::fields[FT_TOKEN] = root[__("token")].get_string();
 
 				g::log::add(__("Successful connected"));
 
 				CFG_STATUS cfg_status = c_cfg::save_creds(username, password);
 				if (cfg_status != CFG_ALREADY_EXISTS) g::log::add(__("Credentials saved! No need to re-login next time"));
 
-				g::log::add(util::format_string(__("Signed in as %s"), username.c_str()));
+				g::log::add(__("Signed in as %s"), username.c_str());
 
 				for (const auto& game : root[__("games")].get_object()) {
-					int days_remaining = util::parse_datetime_diff(game.second[__("expires_at")].string_val);
+					int days_remaining = util::parse_datetime_diff(game.second[__("expires_at")].get_string());
 
-					if (days_remaining > 0) g::log::add(util::format_string(__("Remaining %d days for %s"),
-						days_remaining, game.first.c_str()));
+					if (days_remaining > 0) g::log::add(__("Remaining %d days for %s"),
+						days_remaining, game.first.c_str());
 				}
 
 				g::log::add(__("Your session expires in 3m"));
@@ -325,12 +325,12 @@ static DWORD __stdcall net_thread_routine(LPVOID param)
 
 				switch (Res.status) {
 				case 200: {
-					jsonreader::Value root = jsonreader::Reader::parse(Res.resp);
-					int code = root[__("code")].number_val;
+					jsonreader::json_value root = jsonreader::json_reader::parse(Res.resp);
+					int code = root[__("code")].get_num();
 
 					switch (code) {
 					case 0x70: {
-						std::string data = root[__("base64-payload")].string_val;
+						std::string data = root[__("base64-payload")].get_string();
 						size_t out_len = 0;
 
 						int ret = mbedtls_base64_decode(
@@ -358,9 +358,9 @@ static DWORD __stdcall net_thread_routine(LPVOID param)
 							c_injector mmap(p);
 
 							if (!mmap.open_process()) {
-								g::log::add(util::format_string(__("Attention: %s isn't running. Please launch the game and try again"),
+								g::log::add(__("Attention: %s isn't running. Please launch the game and try again"),
 									std::string(p.begin(), p.end()).c_str()
-								));
+								);
 
 								_this->set_conn_state(HCONN_USER_EXPIRES);
 								return;
@@ -390,7 +390,7 @@ static DWORD __stdcall net_thread_routine(LPVOID param)
 						break;
 					}
 					case 0x76: {
-						g::log::add(util::format_string(__("You have no days remaining to use %s"), g::injector::game_full_list[g::injector::game_index].c_str()));
+						g::log::add(__("You have no days remaining to use %s"), g::injector::game_full_list[g::injector::game_index].c_str());
 						_this->set_conn_state(HCONN_USER_EXPIRES);
 						
 						break;

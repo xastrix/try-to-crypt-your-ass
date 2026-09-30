@@ -1,4 +1,5 @@
 #include "injector.h"
+#include "util.h"
 
 #include <winternl.h>
 #include <tlhelp32.h>
