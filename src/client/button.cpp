@@ -5,7 +5,7 @@ void c_ui_button::think()
 	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
 
 	Vec2 itemMin(drawPos);
-	Vec2 itemMax(itemMin + Vec2(m_size.x, m_size.y));
+	Vec2 itemMax(itemMin + m_size);
 
 	if (is_mouse_over() && g_ui.is_key_pressed(VK_LBUTTON) && !m_hold) {
 		g_ui.set_block(this);
@@ -30,7 +30,7 @@ void c_ui_button::draw()
 	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
 
 	Vec2 itemMin(drawPos);
-	Vec2 itemMax(itemMin + Vec2(m_size.x, m_size.y));
+	Vec2 itemMax(itemMin + m_size);
 
 	g_renderer.rect(itemMin.x - 1, itemMin.y - 1, m_size.x + 2, m_size.y + 2, c_color(10, 10, 10));
 	g_renderer.rect(itemMin.x, itemMin.y, m_size.x, m_size.y, c_color(50, 50, 50));
@@ -67,7 +67,7 @@ bool c_ui_button::is_mouse_over()
 	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
 
 	Vec2 itemMin(drawPos);
-	Vec2 itemMax(itemMin + Vec2(m_size.x, m_size.y));
+	Vec2 itemMax(itemMin + m_size);
 
 	return g_ui.is_hovered(itemMin, itemMax);
 }

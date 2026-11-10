@@ -13,7 +13,7 @@ public:
 	void uninit();
 
 private:
-	bool hwid_init(std::string& out_hwid);
+	bool hwid_init();
 	bool mutex_init();
 	bool proc_mitigation_policy_init();
 	bool verify_windows_version();

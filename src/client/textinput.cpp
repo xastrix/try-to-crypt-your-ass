@@ -8,7 +8,7 @@ void c_ui_textinput::think()
 	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
 
 	Vec2 itemMin(drawPos);
-	Vec2 itemMax(itemMin + Vec2(m_size.x, m_size.y));
+	Vec2 itemMax(itemMin + m_size);
 
 	if (m_ctx_open)
 	{
@@ -199,7 +199,7 @@ void c_ui_textinput::draw()
 	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
 
 	Vec2 itemMin(drawPos);
-	Vec2 itemMax(itemMin + Vec2(m_size.x, m_size.y));
+	Vec2 itemMax(itemMin + m_size);
 
 	g_renderer.rect(drawPos.x, drawPos.y - 1, m_size.x, m_size.y - 1, c_color(10, 10, 10));
 	g_renderer.rect_fill(drawPos.x + 1, drawPos.y, m_size.x - 1, m_size.y - 2, c_color(35, 35, 35));
@@ -281,7 +281,7 @@ bool c_ui_textinput::is_mouse_over()
 	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
 
 	Vec2 itemMin(drawPos);
-	Vec2 itemMax(itemMin + Vec2(m_size.x, m_size.y));
+	Vec2 itemMax(itemMin + m_size);
 
 	return g_ui.is_hovered(itemMin, itemMax);
 }

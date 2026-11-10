@@ -2,8 +2,6 @@
 
 void c_ui_groupbox::think()
 {
-	Vec2 drawPos = m_parent->get_child_draw_pos() + m_pos;
-
 	for (auto child : m_childs)
 	{
 		child->think();

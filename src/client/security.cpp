@@ -141,7 +141,7 @@ _SECURITY_STATUS c_security::init()
 	/*
 	* Generates a unique hwid using cpu and disk serials hashed with sha256
 	*/
-	if (!hwid_init(g::fields[FT_HWID])) {
+	if (!hwid_init()) {
 		VMProtectEnd();
 		return SEC_FAILED;
 	}
@@ -175,7 +175,7 @@ void c_security::uninit()
 	VMProtectEnd();
 }
 
-bool c_security::hwid_init(std::string& out_hwid)
+bool c_security::hwid_init()
 {
 	std::string cpu_raw = util::get_cpu_raw(), phys, hwid;
 	if (!util::get_physical_disk_serial(phys)) return false;
@@ -185,15 +185,15 @@ bool c_security::hwid_init(std::string& out_hwid)
 	unsigned char output_hash[32];
 	if (mbedtls_sha256((const unsigned char*)hwid.c_str(), hwid.length(), output_hash, 0) != 0) return false;
 
-	out_hwid.clear();
-	out_hwid.reserve(64);
+	g::fields[FT_HWID].clear();
+	g::fields[FT_HWID].reserve(64);
 
 	std::string fmt = __("%02x");
 
 	char buf[3];
 	for (int i = 0; i < 32; i++) {
 		snprintf(buf, sizeof(buf), fmt.c_str(), output_hash[i] & 0xFF);
-		out_hwid.append(buf);
+		g::fields[FT_HWID].append(buf);
 	}
 
 	return true;
